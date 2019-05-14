@@ -21,3 +21,4 @@ Route::post('libros/crear', 'BookController@store')->name('books.store');
 Route::get('libros/{book}', 'BookController@show')->name('books.show');
 Route::get('libros/{book}/editar', 'BookController@edit')->name('books.edit');
 Route::put('libros/{book}/editar', 'BookController@update')->name('books.update');
+Route::delete('libros/{book}', 'BookController@destroy')->name('books.destroy');
