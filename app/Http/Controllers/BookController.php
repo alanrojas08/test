@@ -45,4 +45,18 @@ class BookController extends Controller
     {
         return view('books.edit', ['book' => $book]);
     }
+
+    public function update(Request $request, Book $book)
+    {
+        $request->validate([
+            'title' => 'required|min:4|max:20',
+            'description' => 'required|min:6|max:200',
+            'pages' => 'required|numeric|min:10|max:1000',
+            'price' => 'required|numeric|min:1'
+        ]);
+
+        $book->update($request->all());
+
+        return redirect()->route('books.show', $book);
+    }
 }
