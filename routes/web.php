@@ -19,3 +19,4 @@ Route::get('libros', 'BookController@index')->name('books.index');
 Route::get('libros/crear', 'BookController@create')->name('books.create');
 Route::post('libros/crear', 'BookController@store')->name('books.store');
 Route::get('libros/{book}', 'BookController@show')->name('books.show');
+Route::get('libros/{book}/editar', 'BookController@edit')->name('books.edit');
