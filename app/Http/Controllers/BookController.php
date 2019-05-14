@@ -35,4 +35,9 @@ class BookController extends Controller
 
         return redirect()->route('books.index');
     }
+
+    public function show(Book $book)
+    {
+        return view('books.show', ['book' => $book]);
+    }
 }
