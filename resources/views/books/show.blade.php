@@ -15,3 +15,5 @@
 	<input type="submit" value="Delete">
 
 </form>
+
+<a href="{{ route('books.index') }}">Regresar a la lista</a>

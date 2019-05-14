@@ -31,3 +31,7 @@
     <input type="submit" value="Send">
 
 </form>
+
+<hr>
+
+<a href="{{ route('books.index') }}">Regresar a la lista</a>
