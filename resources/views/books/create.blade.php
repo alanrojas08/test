@@ -1,37 +1,63 @@
-@if($errors->any())
+@extends('layouts.app')
 
-    <ul>
+@section('title-page', 'Registrar libro')
 
-        @foreach($errors->all() as $error)
+@section('content')
 
-            <li>{{ $error }}</li>
+    @if($errors->any())
 
-        @endforeach
+        <div class="alert alert-danger">
+            <b>Error</b>
+            
+            <ul>
 
-    </ul>
+            @foreach($errors->all() as $error)
 
-@endif
+                <li>{{ $error }}</li>
 
-<form action="{{ route('books.store') }}" method="post">
+            @endforeach
 
-    @csrf
+            </ul>
 
-    <label for="title">Title:</label>
-    <input type="text" name="title" value="{{ old('title') }}">
+        </div>
 
-    <label for="description">Description:</label>
-    <textarea name="description">{{ old('description') }}</textarea>
+    @endif
 
-    <label for="pages">Pages:</label>
-    <input type="number" name="pages" value="{{ old('pages') }}">
+    <form action="{{ route('books.store') }}" method="post">
 
-    <label for="price">Price:</label>
-    <input type="number" name="price" value="{{ old('price') }}">
+        @csrf
 
-    <input type="submit" value="Send">
+        <div class="form-group">
+            <label for="title" class="form-control-label">Title:</label>
+            <input type="text" name="title" class="form-control" value="{{ old('title') }}">
+        </div>
 
-</form>
+        <div class="for-group">
+            <label for="description" class="form-control-label">Description:</label>
+            <textarea name="description" class="form-control">{{ old('description') }}</textarea>
+        </div>
 
-<hr>
+        <div class="for-group">
+            <label for="pages" class="form-control-label">Pages:</label>
+            <input type="number" name="pages" class="form-control" value="{{ old('pages') }}">
+        </div>
 
-<a href="{{ route('books.index') }}">Regresar a la lista</a>
+        <div class="for-group">
+            <label for="price" class="form-control-label">Price:</label>
+            <input type="number" name="price" class="form-control" value="{{ old('price') }}">
+        </div>
+        
+        <hr>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <a href="{{ route('books.index') }}" class="btn btn-dark form-control">Regresar a la lista</a>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <input type="submit" value="Send" class="btn btn-primary form-control">
+            </div>
+        </div>
+
+    </form>
+
+@endsection

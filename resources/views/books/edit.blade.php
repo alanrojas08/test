@@ -1,3 +1,9 @@
+@extends('layouts.app')
+
+@section('title-page', 'Editar libro')
+
+@section('content')
+
 @if($errors->any())
 
     <ul>
@@ -12,25 +18,43 @@
 
 @endif
 
-<form action="{{ route('books.update', $book) }}" method="post">
+    <form action="{{ route('books.update', $book) }}" method="post">
 
-    @csrf
-    @method('put')
+        @csrf
+        @method('put')
 
-    <label for="title">Title:</label>
-    <input type="text" name="title" value="{{ old('title', $book->title) }}">
+        <div class="form-group">
+            <label for="title" class="form-control-label">Title:</label>
+            <input type="text" name="title" class="form-control" value="{{ old('title', $book->title) }}">  
+        </div>
 
-    <label for="description">Description:</label>
-    <textarea name="description">{{ old('description', $book->description) }}</textarea>
+        <div class="form-group">
+            <label for="description" class="form-control-label">Description:</label>
+            <textarea name="description" class="form-control">{{ old('description', $book->description) }}</textarea>
+        </div>
 
-    <label for="pages">Pages:</label>
-    <input type="number" name="pages" value="{{ old('pages', $book->pages) }}">
+        <div class="form-group">
+            <label for="pages" class="form-control-label">Pages:</label>
+            <input type="number" name="pages" class="form-control" value="{{ old('pages', $book->pages) }}">
+        </div>
 
-    <label for="price">Price:</label>
-    <input type="number" name="price" value="{{ old('price', $book->price) }}">
+        <div class="form-group">
+            <label for="price" class="form-control-label">Price:</label>
+            <input type="number" name="price" class="form-control" value="{{ old('price', $book->price) }}">
+        </div>
 
-    <input type="submit" value="Send">
+        <div class="row">
+            
+            <div class="col-md-6 col-sm-12">
+                <a href="{{ route('books.index') }}" class="btn btn-dark form-control">Regresar a la lista</a>
+            </div>
 
-</form>
+            <div class="col-md-6 col-sm-12">
+                <input type="submit" value="Send" class="btn btn-primary form-control">
+            </div>
 
-<a href="{{ route('books.index') }}">Regresar a la lista</a>
+        </div>
+
+    </form>
+
+@endsection

@@ -22,7 +22,3 @@ Route::get('libros/{book}', 'BookController@show')->name('books.show');
 Route::get('libros/{book}/editar', 'BookController@edit')->name('books.edit');
 Route::put('libros/{book}/editar', 'BookController@update')->name('books.update');
 Route::delete('libros/{book}', 'BookController@destroy')->name('books.destroy');
-
-Route::get('view', function(){
-	return view('layouts.app');
-});
