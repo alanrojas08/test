@@ -10,7 +10,7 @@
 
 	<hr>
 
-	<table class="table table-hover">
+	<table class="table table-hover" id="id">
 		
 		<thead>
 			<tr>
@@ -18,12 +18,13 @@
 				<td>Descripcion</td>
 				<td>Mostrar</td>
 				<td>Editar</td>
+				<td>Eliminar</td>
 			</tr>
 		</thead>
 
 		<tbody>
 			@forelse($books as $book)
-				<tr>
+				<tr data-id="{{ $book->id }}">
 					<td>{{ $book->title }}</td>
 					<td>{{ str_limit($book->description, 15) }}</td>
 					<td>
@@ -31,6 +32,9 @@
 					</td>
 					<td>
 						<a href="{{ route('books.edit', $book) }}" class="btn btn-info">Editar</a>
+					</td>
+					<td>
+						<a href="javascript:void(0)" class="btn btn-danger btn-delete">Eliminar</a>
 					</td>
 				</tr>		    
 
@@ -42,5 +46,48 @@
 		</tbody>
 
 	</table>
+
+	<form action="{{ route('books.destroy', 'ID') }}" method="post" id="form-destroy">
+		
+		@csrf
+		@method('delete')
+
+	</form>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+	
+	$(document).ready(function(e) {
+
+		$(document).on('click', '.btn-delete', function(e) {
+
+			let form = $('#form-destroy');
+			let url = form.attr('action')
+
+			let id = $(this).parents('tr').data('id');
+
+			url = url.replace('ID', id);
+
+			var r = confirm("Are you sure to delete this book?");
+
+			if (r == true) {
+
+				form.prop('action', url);
+				form.submit();
+
+			} else {
+
+			  alert('Action aborted');
+
+			}
+
+		});
+
+	});
+
+</script>
 
 @endsection
